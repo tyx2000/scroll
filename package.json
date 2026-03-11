@@ -1,5 +1,5 @@
 {
-  "name": "react-scroll-container-kit",
+  "name": "@sprinkle2fog/scroll",
   "version": "0.1.0",
   "description": "Highly customizable scroll container for React with pull-down and pull-up loading.",
   "license": "MIT",
