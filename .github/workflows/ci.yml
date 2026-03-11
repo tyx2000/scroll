@@ -1,11 +1,20 @@
-name: CI
+name: Verify And Publish
 
 on:
   workflow_dispatch:
+    inputs:
+      publish_to_npm:
+        description: "Publish to npm after verify"
+        required: true
+        default: false
+        type: boolean
 
 jobs:
   verify:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout
@@ -17,6 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          registry-url: https://registry.npmjs.org
           cache: npm
 
       - name: Install dependencies
@@ -33,3 +43,9 @@ jobs:
 
       - name: Build demo
         run: npm run build:demo
+
+      - name: Publish to npm
+        if: ${{ inputs.publish_to_npm }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --access public

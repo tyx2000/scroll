@@ -42,10 +42,9 @@ npm run build:demo
 
 仓库里已经预留了：
 
-- [ci.yml](/Users/adib/Desktop/practices/react-scroll/.github/workflows/ci.yml) 用于 `typecheck`、测试、库构建和示例页构建
-- [publish.yml](/Users/adib/Desktop/practices/react-scroll/.github/workflows/publish.yml) 用于手动触发发布到 npm
+- [ci.yml](/Users/adib/Desktop/practices/react-scroll/.github/workflows/ci.yml) 统一处理手动校验和可选的 npm 发布
 
-两个 workflow 都改成了 `workflow_dispatch`，可以在 GitHub Actions 页面手动选择分支后再运行。
+这个 workflow 使用 `workflow_dispatch`，可以在 GitHub Actions 页面手动选择分支后再运行，并通过 `publish_to_npm` 决定是只做校验，还是校验后发布到 npm。
 
 发布前需要在 GitHub 仓库 Secrets 中添加：
 
